@@ -5,8 +5,11 @@ import "react-tabs/style/react-tabs.css";
 import { getStoredReadList } from "../../Utilities/addToDb";
 // import Book from "../Book/Book";
 import ReadListDetail from "../ReadListDetail/ReadListDetail";
+import { IoIosArrowDropdownCircle } from "react-icons/io";
 
 const ListedBooks = () => {
+  const [sort, setSort] = useState("");
+
   const [readList, setReadList] = useState([]);
 
   // Ideally we will directly get the read book lists from the database
@@ -27,12 +30,47 @@ const ListedBooks = () => {
     setReadList(readBookList);
   }, []);
 
+  const handleSort = (sortType) => {
+    setSort(sortType);
+    //
+
+    if (sortType === "No. Of Pages") {
+      const sortedReadList = [...readList].sort(
+        (a, b) => a.totalPages - b.totalPages
+      );
+      setReadList(sortedReadList);
+    }
+
+    if (sortType === "Ratings") {
+      const sortedReadList = [...readList].sort((a, b) => a.rating - b.rating);
+      setReadList(sortedReadList);
+    }
+  };
+
   return (
     <div className="mt-10 mb-10">
-      <h3 className="text-3xl my-8">Listed Books</h3>
+      <h3 className="text-3xl my-8 text-center bg-slate-100 p-6">
+        Listed Books
+      </h3>
+
+      <div className="dropdown flex justify-center">
+        <div tabIndex={0} role="button" className="btn btn-success m-1">
+          {sort ? `Sort By: ${sort}` : "Sort By"} <IoIosArrowDropdownCircle />
+        </div>
+        <ul
+          tabIndex={0}
+          className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow mt-12">
+          <li onClick={() => handleSort("Ratings")}>
+            <a>Ratings</a>
+          </li>
+          <li onClick={() => handleSort("No. Of Pages")}>
+            <a>No. Of Pages</a>
+          </li>
+        </ul>
+      </div>
 
       <Tabs>
-        <TabList>
+        <TabList className="">
           <Tab>Read Lists</Tab>
           <Tab>Wishlists</Tab>
         </TabList>
