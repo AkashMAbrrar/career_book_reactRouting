@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Book from "../Book/Book";
+import "./Books.css";
 
 const Books = () => {
   const [books, setBooks] = useState([]);
@@ -11,9 +12,9 @@ const Books = () => {
   }, []);
 
   return (
-    <div>
+    <div className="">
       <h2 className="text-4xl font-bold text-center mt-10">Books</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-24">
+      <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:container md:mx-auto sm:container sm:mx-auto  gap-6 mb-24 customGrid">
         {books.map((book) => (
           <Book book={book} key={book.bookId}></Book>
         ))}

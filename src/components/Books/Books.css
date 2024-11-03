@@ -1,0 +1,9 @@
+@media screen and (min-device-width: 350px) and (max-device-width: 550px) {
+  .customGrid {
+    display: grid;
+    grid-template-columns: repeat(1.1fr);
+    justify-content: center;
+    align-items: center;
+    margin-left: 50px;
+  }
+}

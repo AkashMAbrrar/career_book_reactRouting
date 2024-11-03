@@ -8,7 +8,7 @@ const Book = ({ book }) => {
   console.log(book);
   return (
     <Link to={`/books/${bookId}`}>
-      <div className="card bg-base-100 w-80 shadow-xl p-6 sm:container sm:mx-auto">
+      <div className="card bg-base-100 w-80 shadow-xl p-6 h-[450px]">
         <figure className="bg-gray-200 py-8 rounded-2xl">
           <img className=" object-cover h-[166px]" src={image} alt={bookName} />
         </figure>

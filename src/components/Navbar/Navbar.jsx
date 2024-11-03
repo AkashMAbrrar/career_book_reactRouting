@@ -5,12 +5,14 @@ const Navbar = () => {
   const links = (
     <>
       <li>
-        <NavLink className="mr-6 btn btn-outline  btn-success" to="/">
+        <NavLink to="/" className="mr-6 btn btn-outline  btn-success">
           Home
         </NavLink>
       </li>
       <li>
-        <NavLink className="btn btn-ghost">Listed Books</NavLink>
+        <NavLink to="/listedBooks" className="btn btn-ghost">
+          Listed Books
+        </NavLink>
       </li>
       <li>
         <NavLink className="ml-6 btn btn-ghost">Pages To Read</NavLink>

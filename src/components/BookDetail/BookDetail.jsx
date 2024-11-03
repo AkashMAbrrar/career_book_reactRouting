@@ -1,5 +1,6 @@
 import React from "react";
 import { useLoaderData, useParams } from "react-router-dom";
+import { addToStoredReadList } from "../../Utilities/addToDb";
 
 const BookDetail = () => {
   const { bookId } = useParams();
@@ -19,8 +20,21 @@ const BookDetail = () => {
     tags,
   } = book;
 
+  const handleMarkAsRead = (id) => {
+    /**
+     * 1: Understand what to stored or saved --> Book id
+     * 2: Where to store: --> local stored/ database
+     * 3: keep them as collection, list,array
+     * 4: check: if the book is already in the readList
+     * 5: if not, then add the book to the list
+     * 6: if yes, do not add the book in the readList
+     * **/
+
+    addToStoredReadList(id);
+  };
+
   return (
-    <div className="hero bg-base-200 min-h-screen">
+    <div className="hero bg-base-200 min-h-screen mt-24 mb-12">
       <div className="hero-content flex-col lg:flex-row">
         <img src={image} className="max-w-sm rounded-lg shadow-2xl w-56" />
         <div>
@@ -42,8 +56,12 @@ const BookDetail = () => {
               </div>
             ))}
           </div>
-          <button className="btn btn-ghost">Read</button>
-          <button className="btn btn-info ml-6">Wishlist</button>
+          <button
+            onClick={() => handleMarkAsRead(bookId)}
+            className="btn btn-ghost">
+            Mark as Read
+          </button>
+          <button className="btn btn-info ml-6">Add To Wishlist</button>
         </div>
       </div>
     </div>
